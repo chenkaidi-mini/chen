@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gp4.dao.GoodsMapper">
+
+    <select id="getCount" resultType="java.lang.Long">
+        select count(*) from tb_goods where typeid=#{typeid}
+    </select>
+    <select id="findPageByWhere" resultType="com.gp4.pojo.Goods">
+        select * from tb_goods
+        <if test="param3!=null and param3!=''">
+             where typeid=#{param3}
+        </if>
+        limit #{param1},#{param2}
+    </select>
+    <select id="findById" resultType="com.gp4.pojo.Goods">
+        select * from tb_goods where id=#{id}
+    </select>
+</mapper>
